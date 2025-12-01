@@ -28,35 +28,36 @@
             <div v-else>
                 <div class="overflow-auto">
                     <DataTable :value="filteredDevices" class="text-sm" emptyMessage="Tidak ada perangkat ditemukan">
-                    <Column field="id" header="ID Perangkat" />
-                    <Column field="location" header="Lokasi" />
-                    <Column field="battery" header="Baterai">
-                        <template #body="{ data }">
-                            <div class="flex items-center gap-2">
-                                <div class="text-sm font-medium">{{ data.battery }}%</div>
-                                <div class="w-24 h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
-                                    <div :class="batteryFillClass(data.battery)"
-                                        :style="{ width: Math.min(Math.max(data.battery, 0), 100) + '%' }"
-                                        class="h-full rounded-full"></div>
+                        <Column field="id" header="ID Perangkat" />
+                        <Column field="location" header="Lokasi" />
+                        <Column field="battery" header="Baterai">
+                            <template #body="{ data }">
+                                <div class="flex items-center gap-2">
+                                    <div class="text-sm font-medium">{{ data.battery }}%</div>
+                                    <div class="w-24 h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
+                                        <div :class="batteryFillClass(data.battery)"
+                                            :style="{ width: Math.min(Math.max(data.battery, 0), 100) + '%' }"
+                                            class="h-full rounded-full"></div>
+                                    </div>
                                 </div>
-                            </div>
-                        </template>
-                    </Column>
-                    <Column header="Status">
-                        <template #body="{ data }">
-                            <Tag :value="statusLabel(data.status)" :severity="statusSeverity(data.status)" />
-                        </template>
-                    </Column>
-                    <Column header="Aksi" style="width:130px">
-                        <template #body="{ data }">
-                            <div class="flex items-center gap-2 justify-end">
-                                <Button icon="pi pi-eye" class="p-button-text p-button-sm" @click="viewDevice(data)" />
-                                <Button :icon="isRebooting[data.id] ? 'pi pi-spin pi-refresh' : 'pi pi-refresh'"
-                                    class="p-button-text p-button-sm" :disabled="isRebooting[data.id]"
-                                    @click="rebootDevice(data)" />
-                            </div>
-                        </template>
-                    </Column>
+                            </template>
+                        </Column>
+                        <Column header="Status">
+                            <template #body="{ data }">
+                                <Tag :value="statusLabel(data.status)" :severity="statusSeverity(data.status)" />
+                            </template>
+                        </Column>
+                        <Column header="Aksi" style="width:130px">
+                            <template #body="{ data }">
+                                <div class="flex items-center gap-2 justify-end">
+                                    <Button icon="pi pi-eye" class="p-button-text p-button-sm"
+                                        @click="viewDevice(data)" />
+                                    <Button :icon="isRebooting[data.id] ? 'pi pi-spin pi-refresh' : 'pi pi-refresh'"
+                                        class="p-button-text p-button-sm" :disabled="isRebooting[data.id]"
+                                        @click="rebootDevice(data)" />
+                                </div>
+                            </template>
+                        </Column>
                     </DataTable>
                 </div>
             </div>

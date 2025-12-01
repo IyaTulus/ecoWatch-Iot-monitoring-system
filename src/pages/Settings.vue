@@ -11,10 +11,14 @@
         <div class="card shadow-sm p-6">
             <form @submit.prevent="saveProfile" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
                 <div class="flex flex-col md:items-start items-center text-center md:text-left md:col-span-1">
-                    <div class="w-20 h-20 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-emerald-500 text-white flex items-center justify-center font-semibold text-lg md:text-sm">{{ initials }}</div>
+                    <div
+                        class="w-20 h-20 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full bg-emerald-500 text-white flex items-center justify-center font-semibold text-lg md:text-sm">
+                        {{ initials }}</div>
                     <div class="mt-3 md:mt-2">
-                        <div class="text-sm font-semibold text-gray-900 dark:text-gray-100">{{ profile.name || 'Admin' }}</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">{{ profile.email || 'admin@example.com' }}</div>
+                        <div class="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                            {{ profile.name || 'Admin' }}</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400">{{ profile.email || 'admin@example.com' }}
+                        </div>
                     </div>
                 </div>
 
@@ -22,25 +26,30 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="text-xs text-gray-600 dark:text-gray-300">Nama</label>
-                            <input v-model="profile.name" type="text" class="w-full p-2 border rounded border-gray-200 dark:border-gray-800 bg-transparent text-sm text-gray-900 dark:text-gray-100" />
+                            <input v-model="profile.name" type="text"
+                                class="w-full p-2 border rounded border-gray-200 dark:border-gray-800 bg-transparent text-sm text-gray-900 dark:text-gray-100" />
                             <div v-if="errors.name" class="text-xs text-red-500 mt-1">{{ errors.name }}</div>
                         </div>
 
                         <div>
                             <label class="text-xs text-gray-600 dark:text-gray-300">Email</label>
-                            <input v-model="profile.email" type="email" class="w-full p-2 border rounded border-gray-200 dark:border-gray-800 bg-transparent text-sm text-gray-900 dark:text-gray-100" />
+                            <input v-model="profile.email" type="email"
+                                class="w-full p-2 border rounded border-gray-200 dark:border-gray-800 bg-transparent text-sm text-gray-900 dark:text-gray-100" />
                             <div v-if="errors.email" class="text-xs text-red-500 mt-1">{{ errors.email }}</div>
                         </div>
                     </div>
 
                     <div>
                         <label class="text-xs text-gray-600 dark:text-gray-300">Tentang (opsional)</label>
-                        <textarea v-model="profile.about" rows="3" class="w-full p-2 border rounded border-gray-200 dark:border-gray-800 bg-transparent text-sm text-gray-900 dark:text-gray-100"></textarea>
+                        <textarea v-model="profile.about" rows="3"
+                            class="w-full p-2 border rounded border-gray-200 dark:border-gray-800 bg-transparent text-sm text-gray-900 dark:text-gray-100"></textarea>
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                        <button type="submit" class="w-full sm:w-auto p-2 px-4 rounded bg-emerald-600 text-white text-sm">Simpan</button>
-                        <button type="button" class="w-full sm:w-auto p-2 px-4 rounded border text-sm" @click="resetProfile">Batal</button>
+                        <button type="submit"
+                            class="w-full sm:w-auto p-2 px-4 rounded bg-emerald-600 text-white text-sm">Simpan</button>
+                        <button type="button" class="w-full sm:w-auto p-2 px-4 rounded border text-sm"
+                            @click="resetProfile">Batal</button>
                         <div v-if="success" class="mt-2 sm:mt-0 text-sm text-emerald-600">Profil tersimpan.</div>
                     </div>
                 </div>

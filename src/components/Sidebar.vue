@@ -5,12 +5,11 @@
         <div class="absolute inset-0 bg-black/40"></div>
     </div>
 
-    <aside
-        :class="[
-            'bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 h-screen sticky top-0 flex flex-col transition-all duration-300',
-            isSidebarCollapsed ? 'w-16' : 'w-64',
-            isMobileOpen ? 'fixed left-0 top-0 z-40 w-64 translate-x-0' : 'md:static md:translate-x-0 -translate-x-full md:transform-none'
-        ]">
+    <aside :class="[
+        'bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 h-screen sticky top-0 flex flex-col transition-all duration-300',
+        isSidebarCollapsed ? 'w-16' : 'w-64',
+        isMobileOpen ? 'fixed left-0 top-0 z-40 w-64 translate-x-0' : 'md:static md:translate-x-0 -translate-x-full md:transform-none'
+    ]">
         <!-- Brand + Toggle -->
         <div class="flex items-center justify-between px-4 py-4">
             <div class="flex items-center gap-2" v-if="!isSidebarCollapsed">
@@ -21,11 +20,12 @@
             </div>
             <div class="flex items-center gap-2">
                 <button class="p-button p-button-text p-0 hidden md:inline-flex" type="button" @click="toggleSidebar">
-                <i class="pi" :class="isSidebarCollapsed ? 'pi-angle-right' : 'pi-angle-left'"></i>
+                    <i class="pi" :class="isSidebarCollapsed ? 'pi-angle-right' : 'pi-angle-left'"></i>
                 </button>
 
                 <!-- mobile close button shown when overlay is open -->
-                <button v-if="isMobileOpen" class="p-button p-button-text p-0 md:hidden" type="button" @click="closeMobileSidebar">
+                <button v-if="isMobileOpen" class="p-button p-button-text p-0 md:hidden" type="button"
+                    @click="closeMobileSidebar">
                     <i class="pi pi-times"></i>
                 </button>
             </div>

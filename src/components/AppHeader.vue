@@ -9,12 +9,12 @@
             </button>
 
             <div class="min-w-0">
-            <h1 class="text-lg md:text-xl font-semibold truncate text-gray-900 dark:text-gray-100">
-                Monitoring Area Hutan Kota
-            </h1>
-            <p class="hidden sm:block text-sm text-gray-500 dark:text-gray-400">
-                Update terakhir: Baru saja
-            </p>
+                <h1 class="text-lg md:text-xl font-semibold truncate text-gray-900 dark:text-gray-100">
+                    Monitoring Area Hutan Kota
+                </h1>
+                <p class="hidden sm:block text-sm text-gray-500 dark:text-gray-400">
+                    Update terakhir: Baru saja
+                </p>
             </div>
         </div>
 

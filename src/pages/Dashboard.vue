@@ -121,18 +121,18 @@
             <template #content>
                 <div class="overflow-auto">
                     <DataTable :value="deviceList" class="text-sm">
-                    <Column field="id" header="ID Perangkat" />
-                    <Column field="location" header="Lokasi" />
-                    <Column field="battery" header="Baterai">
-                        <template #body="{ data }">
-                            {{ data.battery }}%
-                        </template>
-                    </Column>
-                    <Column header="Status">
-                        <template #body="{ data }">
-                            <Tag :value="statusLabel(data.status)" :severity="statusSeverity(data.status)" />
-                        </template>
-                    </Column>
+                        <Column field="id" header="ID Perangkat" />
+                        <Column field="location" header="Lokasi" />
+                        <Column field="battery" header="Baterai">
+                            <template #body="{ data }">
+                                {{ data.battery }}%
+                            </template>
+                        </Column>
+                        <Column header="Status">
+                            <template #body="{ data }">
+                                <Tag :value="statusLabel(data.status)" :severity="statusSeverity(data.status)" />
+                            </template>
+                        </Column>
                     </DataTable>
                 </div>
             </template>

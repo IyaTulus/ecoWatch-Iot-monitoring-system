@@ -26,7 +26,8 @@
             </div>
 
             <div v-else>
-                <DataTable :value="filteredDevices" class="text-sm" emptyMessage="Tidak ada perangkat ditemukan">
+                <div class="overflow-auto">
+                    <DataTable :value="filteredDevices" class="text-sm" emptyMessage="Tidak ada perangkat ditemukan">
                     <Column field="id" header="ID Perangkat" />
                     <Column field="location" header="Lokasi" />
                     <Column field="battery" header="Baterai">
@@ -56,7 +57,8 @@
                             </div>
                         </template>
                     </Column>
-                </DataTable>
+                    </DataTable>
+                </div>
             </div>
         </div>
     </div>

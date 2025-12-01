@@ -119,7 +119,8 @@
                 Status Perangkat IoT
             </template>
             <template #content>
-                <DataTable :value="deviceList" class="text-sm">
+                <div class="overflow-auto">
+                    <DataTable :value="deviceList" class="text-sm">
                     <Column field="id" header="ID Perangkat" />
                     <Column field="location" header="Lokasi" />
                     <Column field="battery" header="Baterai">
@@ -132,7 +133,8 @@
                             <Tag :value="statusLabel(data.status)" :severity="statusSeverity(data.status)" />
                         </template>
                     </Column>
-                </DataTable>
+                    </DataTable>
+                </div>
             </template>
         </Card>
     </div>

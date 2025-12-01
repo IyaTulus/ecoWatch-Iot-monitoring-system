@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoWatch - IoT Environmental Monitor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #10b981; /* Eco Green */
+            --secondary-color: #064e3b; /* Dark Green */
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100%;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background-color: #ecfdf5;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            margin-left: 250px; /* Lebar sidebar */
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h2 {
+            color: var(--text-dark);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* DASHBOARD GRID */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* SENSOR CARDS */
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .bg-green { background: #d1fae5; color: var(--primary-color); }
+        .bg-blue { background: #dbeafe; color: #3b82f6; }
+        .bg-orange { background: #ffedd5; color: var(--warning); }
+        .bg-red { background: #fee2e2; color: var(--danger); }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .card-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* BIG CHART SECTION (Simulasi) */
+        .chart-section {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, rgba(255,255,255,0) 100%);
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding-bottom: 10px;
+        }
+
+        /* Simple CSS Bar Chart for demo */
+        .bar {
+            width: 40px;
+            background-color: var(--primary-color);
+            opacity: 0.7;
+            border-radius: 4px 4px 0 0;
+            transition: height 1s;
+        }
+
+        /* DEVICE LIST */
+        .device-list {
+            margin-top: 30px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        th {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-active { background: #d1fae5; color: var(--primary-color); }
+        .status-offline { background: #fee2e2; color: var(--danger); }
+
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-leaf"></i> EcoWatch
+        </div>
+        <a href="#" class="menu-item active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-microchip"></i> Perangkat</a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-map-location-dot"></i> Peta Sensor</a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-bell"></i> Notifikasi</a>
+        <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> Pengaturan</a>
+    </div>
+
+    <div class="main-content">
+        
+        <div class="header">
+            <div>
+                <h2>Monitoring Area Hutan Kota</h2>
+                <p style="color: var(--text-light);">Update terakhir: Baru saja</p>
+            </div>
+            <div class="user-profile">
+                <span>Admin</span>
+                <div class="user-avatar">AD</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon-box bg-green"><i class="fa-solid fa-temperature-three-quarters"></i></div>
+                    <i class="fa-solid fa-ellipsis text-light"></i>
+                </div>
+                <div class="card-value">28.5°C</div>
+                <div class="card-label">Suhu Udara (Rata-rata)</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon-box bg-blue"><i class="fa-solid fa-droplet"></i></div>
+                </div>
+                <div class="card-value">72%</div>
+                <div class="card-label">Kelembapan Tanah</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon-box bg-orange"><i class="fa-solid fa-wind"></i></div>
+                </div>
+                <div class="card-value">45 AQI</div>
+                <div class="card-label">Kualitas Udara (Normal)</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon-box bg-red"><i class="fa-solid fa-cloud"></i></div>
+                </div>
+                <div class="card-value">420 ppm</div>
+                <div class="card-label">Kadar CO2</div>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <h3 style="margin-bottom: 20px; color: var(--text-dark);">Tren Kualitas Udara (24 Jam)</h3>
+            <div class="chart-placeholder">
+                <div class="bar" style="height: 40%;"></div>
+                <div class="bar" style="height: 60%;"></div>
+                <div class="bar" style="height: 50%;"></div>
+                <div class="bar" style="height: 80%;"></div>
+                <div class="bar" style="height: 45%;"></div>
+                <div class="bar" style="height: 70%;"></div>
+                <div class="bar" style="height: 30%;"></div>
+            </div>
+        </div>
+
+        <div class="device-list">
+            <h3 style="margin-bottom: 20px;">Status Perangkat IoT</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Perangkat</th>
+                        <th>Lokasi</th>
+                        <th>Baterai</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ESP32-S001</td>
+                        <td>Zona Utara - Pohon Jati</td>
+                        <td>85%</td>
+                        <td><span class="status-badge status-active">Online</span></td>
+                    </tr>
+                    <tr>
+                        <td>ESP8266-W02</td>
+                        <td>Zona Barat - Sungai</td>
+                        <td>12%</td>
+                        <td><span class="status-badge status-active">Low Battery</span></td>
+                    </tr>
+                    <tr>
+                        <td>Raspberry-Pi-Master</td>
+                        <td>Pos Jaga Utama</td>
+                        <td>100% (AC)</td>
+                        <td><span class="status-badge status-active">Online</span></td>
+                    </tr>
+                     <tr>
+                        <td>Arduino-LoRa-04</td>
+                        <td>Zona Selatan</td>
+                        <td>0%</td>
+                        <td><span class="status-badge status-offline">Offline</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>

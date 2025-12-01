@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure default text/background colors follow theme so components without
+	 explicit color utilities don't become invisible when switching modes. */
+:root,
+html,
+body,
+#app {
+  @apply text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900;
+}

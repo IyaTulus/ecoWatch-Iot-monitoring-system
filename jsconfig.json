@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
-  },
-  "exclude": ["node_modules", "dist"]
+    },
+    "module": "esnext",
+    "target": "es2020",
+    "downlevelIteration": true
+  }
 }

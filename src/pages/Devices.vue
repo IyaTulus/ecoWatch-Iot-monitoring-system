@@ -2,7 +2,7 @@
 <template>
     <div class="space-y-6">
         <!-- Page Header -->
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
                 <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-3">
                     <div

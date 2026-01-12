@@ -3,7 +3,7 @@
     <div class="space-y-6">
         <!-- Hero Section - System Overview -->
         <div
-            class="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 dark:from-emerald-600 dark:via-teal-600 dark:to-cyan-600 p-8 shadow-xl">
+            class="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 dark:from-emerald-600 dark:via-teal-600 dark:to-cyan-600 p-4 md:p-8 shadow-xl">
             <!-- Background Pattern -->
             <div class="absolute inset-0 opacity-10">
                 <div class="absolute inset-0"
@@ -115,7 +115,7 @@
                 </div>
             </template>
             <template #content>
-                <div class="grid grid-cols-3 gap-4 text-center">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                     <div class="p-4 rounded-lg bg-green-50 dark:bg-green-900/20">
                         <div class="text-3xl font-bold text-green-600">{{ summary.healthy }}</div>
                         <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Healthy</div>

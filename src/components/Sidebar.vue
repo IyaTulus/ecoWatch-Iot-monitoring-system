@@ -6,7 +6,7 @@
     </div>
 
     <aside :class="[
-        'bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 fixed top-0 left-0 h-full flex flex-col transition-all duration-300 z-20',
+        'bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 fixed top-0 left-0 h-full flex flex-col transition-all duration-300 z-40',
         isSidebarCollapsed ? 'w-16' : 'w-64',
         isMobileOpen ? 'translate-x-0' : 'md:translate-x-0 -translate-x-full'
     ]">
